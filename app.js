@@ -94,8 +94,9 @@ app.use(express.static("public"));
 
 app.use(
   "/public/multedImg",
-  "/public/multedImg"
+  express.static(path.join(__dirname, "public/multedImg"))
 );
+
 app.use(
   session({
     name: "UserSession",
