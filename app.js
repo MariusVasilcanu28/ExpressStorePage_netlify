@@ -1,5 +1,4 @@
 // Imports
-const https = require("https");
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
@@ -155,7 +154,7 @@ app.use((error, req, res, next) => {
   });
 });
 
-// Database Connection
+// MongoDB Connection
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error(err));
