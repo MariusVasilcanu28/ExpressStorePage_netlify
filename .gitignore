@@ -1,0 +1,10 @@
+node_modules
+.parcel-cache
+dist
+nodemon.json
+functions
+# Local Netlify folder
+.netlify
+nodemon.json
+old
+data/products_copy.json
