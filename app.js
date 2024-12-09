@@ -31,6 +31,10 @@ const { MONGODB_URI, CSRF_CSRF_SECRET, PORT } = require("./util/keys");
 const { options } = require("./util/csrfOptions");
 
 const app = express();
+
+// Router
+const router = express.Router();
+
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions",
@@ -166,4 +170,5 @@ mongoose
   .catch((err) => console.error(err));
 
 // Export the app
-module.exports = app;
+api.use("/", router);
+export const handler = serverless(app);
