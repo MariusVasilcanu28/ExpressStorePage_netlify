@@ -89,7 +89,9 @@ app.use(
     fileFilter: fileFilter,
   }).single("image")
 );
+
 app.use(express.static(path.join(__dirname, "public")));
+
 app.use(
   "/public/multedImg",
   express.static(path.join(__dirname, "public/multedImg"))
