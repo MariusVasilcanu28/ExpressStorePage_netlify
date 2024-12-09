@@ -8,7 +8,7 @@
   ## Not needed for static site generators.
 [[redirects]]
   from = "/*"
-  to = "/functions/app"
+  to = "/netlify/functions/api"
   status = 200
 
   ## (optional) Settings for Netlify Dev
