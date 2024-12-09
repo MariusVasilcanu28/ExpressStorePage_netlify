@@ -60,7 +60,7 @@ const { doubleCsrfProtection } = doubleCsrf(options);
 
 // Application Setup
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", "views");
 
 // Middleware
 app.use(
@@ -74,14 +74,14 @@ app.use(
     },
   })
 );
-app.use(compression());
-app.use(
-  morgan("combined", {
-    stream: fs.createWriteStream(path.join(__dirname, "access.log"), {
-      flags: "a",
-    }),
-  })
-);
+// app.use(compression());
+// app.use(
+//   morgan("combined", {
+//     stream: fs.createWriteStream(path.join(__dirname, "access.log"), {
+//       flags: "a",
+//     }),
+//   })
+// );
 app.use(express.urlencoded({ extended: true }));
 app.use(
   multer({
@@ -94,7 +94,7 @@ app.use(express.static("public"));
 
 app.use(
   "/public/multedImg",
-  express.static(path.join(__dirname, "public/multedImg"))
+  "/public/multedImg"
 );
 app.use(
   session({
