@@ -1,8 +1,8 @@
 [functions]
-  external_node_modules = ["express"]
+  external_node_modules = ["express", "mongoose", "connect-mongodb-session", "csrf-csrf"]
   node_bundler = "esbuild"
+
 [[redirects]]
-  force = true
   from = "/*"
+  to = "/.netlify/functions/api"
   status = 200
-  to = "/app"

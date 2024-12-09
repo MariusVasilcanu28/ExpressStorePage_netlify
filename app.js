@@ -1,6 +1,5 @@
 // Imports
 const https = require("https");
-const serverless = require("serverless-http");
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
@@ -27,13 +26,10 @@ const shopRoutes = require("./routes/shop");
 const authRoutes = require("./routes/auth");
 
 // Config/Constants
-const { MONGODB_URI, CSRF_CSRF_SECRET, PORT } = require("./util/keys");
+const { MONGODB_URI, CSRF_CSRF_SECRET } = require("./util/keys");
 const { options } = require("./util/csrfOptions");
 
 const app = express();
-
-// Router
-const router = express.Router();
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -159,16 +155,10 @@ app.use((error, req, res, next) => {
   });
 });
 
-// Database Connection and Server Start
-mongoose
-  .connect(MONGODB_URI)
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  })
+// Database Connection
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error(err));
 
-// Export the app
-api.use("/", router);
-export const handler = serverless(app);
+// Export the app for the serverless function
+module.exports = app;
